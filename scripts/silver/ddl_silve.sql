@@ -21,7 +21,8 @@ CREATE TABLE silver.crm_cust_info (
 	cst_lastname VARCHAR(50),
 	cst_marital_status VARCHAR(50),
 	cst_gndr VARCHAR(50),
-	cst_create_date DATE
+	cst_create_date DATE,
+	dwh_create_date DATETIME2 DEFAULT GETDATE()
 )
 
 IF OBJECT_ID ('silver.crm_prd_info', 'U') IS NOT NULL
@@ -33,7 +34,8 @@ CREATE TABLE silver.crm_prd_info(
 	prd_cost NUMERIC (10,2),
 	prd_line VARCHAR(50),
 	prd_start_dt DATE,
-	prd_end_dt DATE
+	prd_end_dt DATE,
+	dwh_create_date DATETIME2 DEFAULT GETDATE()
 )
 
 
@@ -48,7 +50,8 @@ CREATE TABLE silver.crm_sales_details(
 	sls_due_dt DATE,
 	sls_sales NUMERIC(10,2),
 	sls_quantity INT,
-	sls_price NUMERIC(10,2)
+	sls_price NUMERIC(10,2),
+	dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
 
 IF OBJECT_ID ('silver.erp_cust_az12', 'U') IS NOT NULL
@@ -56,14 +59,16 @@ IF OBJECT_ID ('silver.erp_cust_az12', 'U') IS NOT NULL
 CREATE TABLE silver.erp_cust_az12(
 	cid VARCHAR(50),
 	birth_date DATE,
-	gender VARCHAR(50)
+	gender VARCHAR(50),
+	dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
 
 IF OBJECT_ID ('silver.erp_loc_a101', 'U') IS NOT NULL
 	DROP TABLE silver.erp_loc_a101;
 CREATE TABLE silver.erp_loc_a101(
 	cid INT,
-	country VARCHAR(50)
+	country VARCHAR(50),
+	dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
 
 
@@ -73,5 +78,7 @@ CREATE TABLE silver.erp_px_catg1v2(
 	id INT,
 	category VARCHAR(50),
 	sub_category VARCHAR(50),
-	maintenance VARCHAR(5)
+	maintenance VARCHAR(5),
+	dwh_create_date DATETIME2 DEFAULT GETDATE()
+
 	)
